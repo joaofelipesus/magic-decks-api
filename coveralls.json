@@ -1,0 +1,8 @@
+{
+  "skip_files": [
+    "test",
+    "lib/magic_decks_web/channels/user_socket.ex",
+    "lib/magic_decks_web/endpoint.ex",
+    "lib/magic_decks_web/gettext.ex"
+  ]
+}
