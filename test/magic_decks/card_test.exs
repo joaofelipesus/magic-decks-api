@@ -19,21 +19,21 @@ defmodule MagicDecks.CardTest do
       result = Card.changeset(params)
 
       assert %Ecto.Changeset{
-        changes: %{
-          mana_cost: "6{W}{W}{W}",
-          name_en: "Akroma, Angel of Wrath",
-          name_pt: "Akroma, Anjo da Ira",
-          power: 6,
-          rarity: :rare,
-          set: "legions",
-          set_number: 6,
-          toughness: 6,
-          types: ["creature"]
-        },
-        errors: [],
-        data: %Card{},
-        valid?: true
-      } = result
+               changes: %{
+                 mana_cost: "6{W}{W}{W}",
+                 name_en: "Akroma, Angel of Wrath",
+                 name_pt: "Akroma, Anjo da Ira",
+                 power: 6,
+                 rarity: :rare,
+                 set: "legions",
+                 set_number: 6,
+                 toughness: 6,
+                 types: ["creature"]
+               },
+               errors: [],
+               data: %Card{},
+               valid?: true
+             } = result
     end
 
     test "returns an invalid changeset, when params has errors" do
@@ -51,10 +51,10 @@ defmodule MagicDecks.CardTest do
       result = Card.changeset(params)
 
       assert %Ecto.Changeset{
-        valid?: false,
-        errors: [name_pt: {"can't be blank", [validation: :required]}],
-        data: %Card{}
-      } = result
+               valid?: false,
+               errors: [name_pt: {"can't be blank", [validation: :required]}],
+               data: %Card{}
+             } = result
     end
   end
 
@@ -82,12 +82,12 @@ defmodule MagicDecks.CardTest do
       result = Card.changeset(card, update_params)
 
       assert %Ecto.Changeset{
-        changes: %{
-          power: 6
-        },
-        data: %Card{},
-        valid?: true
-      } = result
+               changes: %{
+                 power: 6
+               },
+               data: %Card{},
+               valid?: true
+             } = result
     end
 
     test "returns an invalid changeset, when params has erros" do
@@ -113,10 +113,10 @@ defmodule MagicDecks.CardTest do
       result = Card.changeset(card, update_params)
 
       assert %Ecto.Changeset{
-        data: %Card{},
-        valid?: false,
-        errors: [name_pt: {"can't be blank", [validation: :required]}]
-      } = result
+               data: %Card{},
+               valid?: false,
+               errors: [name_pt: {"can't be blank", [validation: :required]}]
+             } = result
     end
   end
 end

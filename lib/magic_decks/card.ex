@@ -38,6 +38,7 @@ defmodule MagicDecks.Card do
     field :power, :integer
     field :toughness, :integer
     field :colors, {:array, :string}
+    field :image_url, :string
     timestamps()
   end
 

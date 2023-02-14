@@ -15,6 +15,7 @@ defmodule MagicDecks.Repo.Migrations.CreateCardsSchema do
       add :power, :integer
       add :toughness, :integer
       add :colors, {:array, :string}
+      add :image_url, :string
     end
   end
 end
