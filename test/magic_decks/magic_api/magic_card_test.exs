@@ -126,18 +126,19 @@ defmodule MagicDecks.MagicApi.MagicCardTest do
       result = MagicCard.build(params)
 
       assert %MagicDecks.MagicApi.MagicCard{
-        colors: ["W"],
-        image_url: "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=482701&type=card",
-        mana_cost: "{5}{W}{W}{W}",
-        name_en: "Akroma, Angel of Wrath",
-        name_pt: "Akroma, Anjo da Ira",
-        power: "6",
-        rarity: "Mythic",
-        set: "Commander 2020",
-        set_number: "73",
-        toughness: "6",
-        types: ["Creature"]
-      } == result
+               colors: ["W"],
+               image_url:
+                 "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=482701&type=card",
+               mana_cost: "{5}{W}{W}{W}",
+               name_en: "Akroma, Angel of Wrath",
+               name_pt: "Akroma, Anjo da Ira",
+               power: "6",
+               rarity: "Mythic",
+               set: "Commander 2020",
+               set_number: "73",
+               toughness: "6",
+               types: ["Creature"]
+             } == result
     end
   end
 end
