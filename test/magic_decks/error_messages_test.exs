@@ -7,4 +7,12 @@ defmodule MagicDecks.ErrorMessagesTest do
       assert ErrorMessages.invalid_uuid_error() == "Invalid id format."
     end
   end
+
+  describe "resource_not_found/1" do
+    test "returns not found error message with capitalized resource name" do
+      result = ErrorMessages.resource_not_found(:deck)
+
+      assert "Deck not found." == result
+    end
+  end
 end
