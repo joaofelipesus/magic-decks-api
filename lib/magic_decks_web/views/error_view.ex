@@ -15,8 +15,16 @@ defmodule MagicDecksWeb.ErrorView do
     %{errors: %{detail: Phoenix.Controller.status_message_from_template(template)}}
   end
 
-  def render("400.json", %{result: result}) do
+  def render("400.json", %{result: %Ecto.Changeset{} = result}) do
     %{errors: translate_errors(result)}
+  end
+
+  def render("400.json", %{result: message}) do
+    %{errors: [message]}
+  end
+
+  def render("404.json", %{message: message}) do
+    %{errors: [message]}
   end
 
   def translate_errors(changeset) do

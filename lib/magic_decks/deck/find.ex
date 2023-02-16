@@ -11,7 +11,7 @@ defmodule MagicDecks.Deck.Find do
 
   defp fetch_deck(uuid) do
     case Repo.get(Deck, uuid) do
-      nil -> {:error, ErrorMessages.resource_not_found(:deck)}
+      nil -> {:error, %{message: ErrorMessages.resource_not_found(:deck), code: 404}}
       deck -> {:ok, deck}
     end
   end

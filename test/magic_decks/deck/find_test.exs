@@ -25,9 +25,10 @@ defmodule MagicDecks.Deck.FindTest do
 
     test "returns error message, when elemnt not found" do
       fake_uuid = "9314b4a2-7280-431a-989e-63595cdfaa19"
-      {:error, message} = Find.call(fake_uuid)
+      {:error, %{message: message, code: code}} = Find.call(fake_uuid)
 
       assert message == "Deck not found."
+      assert code == 404
     end
   end
 end
