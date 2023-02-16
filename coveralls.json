@@ -3,6 +3,12 @@
     "test",
     "lib/magic_decks_web/channels/user_socket.ex",
     "lib/magic_decks_web/endpoint.ex",
-    "lib/magic_decks_web/gettext.ex"
+    "lib/magic_decks_web/gettext.ex",
+    "lib/magic_decks_web/telemetry.ex",
+    "lib/magic_decks_web/router.ex",
+    "lib/magic_decks/repo.ex",
+    "lib/magic_decks_web.ex",
+    "lib/magic_decks/application.ex",
+    "lib/magic_decks_web/views/error_helpers.ex"
   ]
 }
