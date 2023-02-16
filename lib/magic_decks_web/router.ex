@@ -7,6 +7,8 @@ defmodule MagicDecksWeb.Router do
 
   scope "/api", MagicDecksWeb do
     pipe_through :api
+
+    resources "/decks", DecksController
   end
 
   # Enables LiveDashboard only for development
