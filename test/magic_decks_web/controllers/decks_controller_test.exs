@@ -144,4 +144,41 @@ defmodule MagicDecksWeb.DecksControllerTest do
       assert response == %{"errors" => ["Invalid id format."]}
     end
   end
+
+  describe "#delete" do
+    test "deletes deck, when received id is valid", %{conn: conn} do
+      {:ok, %Deck{id: deck_id}} =
+        %{name: "Goblins", format: :commander, description: "aggro"}
+        |> MagicDecks.create_deck()
+
+      before_count = MagicDecks.Repo.aggregate(Deck, :count)
+
+      response = delete(conn, Routes.decks_path(conn, :delete, deck_id))
+
+      after_count = MagicDecks.Repo.aggregate(Deck, :count)
+
+      assert after_count < before_count
+      assert response.status == 204
+    end
+
+    test "returns bad request status with error message, when id format is invalid", %{conn: conn} do
+      response =
+        conn
+        |> delete(Routes.decks_path(conn, :delete, "123"))
+        |> json_response(:bad_request)
+
+      assert %{"errors" => ["Invalid id format."]} == response
+    end
+
+    test "returns not found status with error message, when deck don't exist", %{conn: conn} do
+      fake_id = "9314b4a2-7280-431a-989e-63595cdfaa19"
+
+      response =
+        conn
+        |> delete(Routes.decks_path(conn, :delete, fake_id))
+        |> json_response(:not_found)
+
+      assert response == %{"errors" => ["Deck not found."]}
+    end
+  end
 end

@@ -21,11 +21,25 @@ defmodule MagicDecksWeb.DecksController do
     |> handle_response(conn, "show.json", :ok)
   end
 
+  def delete(conn, %{"id" => id}) do
+    id
+    |> MagicDecks.delete_deck()
+    |> handle_delete_response(conn)
+  end
+
   defp handle_response({:error, _error} = error, _conn, _view, _status), do: error
 
   defp handle_response({:ok, deck}, conn, view, status) do
     conn
     |> put_status(status)
     |> render(view, %{deck: deck})
+  end
+
+  defp handle_delete_response({:error, _error} = error, _conn), do: error
+
+  defp handle_delete_response({:ok, _deck}, conn) do
+    conn
+    |> put_status(:no_content)
+    |> text("")
   end
 end
