@@ -15,6 +15,12 @@ defmodule MagicDecksWeb.DecksController do
     |> handle_response(conn, "show.json", :ok)
   end
 
+  def update(conn, %{"id" => id, "name" => name, "format" => format, "description" => description}) do
+    %{id: id, name: name, format: format, description: description}
+    |> MagicDecks.update_deck()
+    |> handle_response(conn, "show.json", :ok)
+  end
+
   defp handle_response({:error, _error} = error, _conn, _view, _status), do: error
 
   defp handle_response({:ok, deck}, conn, view, status) do
