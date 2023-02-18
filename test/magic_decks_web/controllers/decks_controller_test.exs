@@ -16,12 +16,12 @@ defmodule MagicDecksWeb.DecksControllerTest do
         |> json_response(:created)
 
       assert %{
-        "description" => "Infinite turns",
-        "format" => "commander",
-        "id" => _id,
-        "inserted_at" => _inserted_at,
-        "name" => "Jhoira storm"
-      } = response
+               "description" => "Infinite turns",
+               "format" => "commander",
+               "id" => _id,
+               "inserted_at" => _inserted_at,
+               "name" => "Jhoira storm"
+             } = response
     end
 
     test "returns error messages, when params has problems", %{conn: conn} do
@@ -52,12 +52,12 @@ defmodule MagicDecksWeb.DecksControllerTest do
         |> json_response(:ok)
 
       assert %{
-        "description" => "aggro",
-        "format" => "commander",
-        "id" => _id,
-        "inserted_at" => _inserted_at,
-        "name" => "Goblins"
-      } = response
+               "description" => "aggro",
+               "format" => "commander",
+               "id" => _id,
+               "inserted_at" => _inserted_at,
+               "name" => "Goblins"
+             } = response
     end
 
     test "returns bad request status with error message, when id format is invalid", %{conn: conn} do
@@ -100,12 +100,12 @@ defmodule MagicDecksWeb.DecksControllerTest do
         |> json_response(:ok)
 
       assert %{
-        "description" => "Deck for fun",
-        "format" => "standard",
-        "id" => _id,
-        "inserted_at" => _inserted_at,
-        "name" => "New name"
-      } = response
+               "description" => "Deck for fun",
+               "format" => "standard",
+               "id" => _id,
+               "inserted_at" => _inserted_at,
+               "name" => "New name"
+             } = response
     end
 
     test "returns not found status, when deck id don't belong to a register", %{conn: conn} do

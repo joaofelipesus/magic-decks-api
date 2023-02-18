@@ -19,10 +19,10 @@ defmodule MagicDecks.Deck.UpdateTest do
       assert {:ok, %Deck{} = updated_deck} = Update.call(params)
 
       assert %{
-        name: "New name",
-        format: :standard,
-        description: "Deck for fun"
-      } = updated_deck
+               name: "New name",
+               format: :standard,
+               description: "Deck for fun"
+             } = updated_deck
     end
 
     test "returns error, when id has invalid format" do
@@ -35,9 +35,9 @@ defmodule MagicDecks.Deck.UpdateTest do
       params = %{id: "12345678-1234-1234-1234-123456789012", name: "New name", format: :standard}
 
       assert {
-        :error,
-        %{code: 404, message: "Deck not found."}
-      } = Update.call(params)
+               :error,
+               %{code: 404, message: "Deck not found."}
+             } = Update.call(params)
     end
   end
 end

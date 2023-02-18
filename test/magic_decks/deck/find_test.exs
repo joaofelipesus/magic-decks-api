@@ -5,16 +5,17 @@ defmodule MagicDecks.Deck.FindTest do
 
   describe "call/1" do
     test "return deck, when received id belongs to a register" do
-      {:ok, deck} = MagicDecks.create_deck(%{name: "Fractius", format: :commander, decription: ""})
+      {:ok, deck} =
+        MagicDecks.create_deck(%{name: "Fractius", format: :commander, decription: ""})
 
       {:ok, result} = Find.call(deck.id)
 
       assert %MagicDecks.Deck{
-        description: nil,
-        format: :commander,
-        id: _id,
-        name: "Fractius",
-      } = result
+               description: nil,
+               format: :commander,
+               id: _id,
+               name: "Fractius"
+             } = result
     end
 
     test "returns error message, when received id has invalid format" do

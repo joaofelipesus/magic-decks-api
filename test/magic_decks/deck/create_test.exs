@@ -14,12 +14,13 @@ defmodule MagicDecks.Deck.CreateTest do
       after_count = Repo.aggregate(Deck, :count)
 
       assert after_count > before_count
+
       assert %Deck{
-        id: _id,
-        name: "Fractius aggro",
-        format: :commander,
-        description: "Some nice deck"
-      } = deck
+               id: _id,
+               name: "Fractius aggro",
+               format: :commander,
+               description: "Some nice deck"
+             } = deck
     end
 
     test "returns a invalid changeset, when params has errors" do
@@ -28,8 +29,8 @@ defmodule MagicDecks.Deck.CreateTest do
         |> Create.call()
 
       assert %Ecto.Changeset{
-        valid?: false
-      } = result
+               valid?: false
+             } = result
     end
   end
 end

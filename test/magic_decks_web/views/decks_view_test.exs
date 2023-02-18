@@ -12,12 +12,12 @@ defmodule MagicDecksWeb.DecksViewTest do
       result = render(MagicDecksWeb.DecksView, "show.json", %{deck: deck})
 
       assert %{
-        description: "Deck forfun",
-        format: :standard,
-        id: _id,
-        inserted_at: _inserted_at,
-        name: "Fractius aggro"
-      } = result
+               description: "Deck forfun",
+               format: :standard,
+               id: _id,
+               inserted_at: _inserted_at,
+               name: "Fractius aggro"
+             } = result
     end
   end
 end

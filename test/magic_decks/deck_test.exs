@@ -13,16 +13,16 @@ defmodule MagicDecks.DeckTest do
       result = Deck.changeset(params)
 
       assert %Ecto.Changeset{
-        action: nil,
-        changes: %{
-          description: "Winning matches and loosing friends",
-          format: :commander,
-          name: "Fractius aggro"
-        },
-        errors: [],
-        data: %Deck{},
-        valid?: true
-      } = result
+               action: nil,
+               changes: %{
+                 description: "Winning matches and loosing friends",
+                 format: :commander,
+                 name: "Fractius aggro"
+               },
+               errors: [],
+               data: %Deck{},
+               valid?: true
+             } = result
     end
 
     test "returns an invalid changeset, when params are invalid" do
@@ -34,15 +34,15 @@ defmodule MagicDecks.DeckTest do
       result = Deck.changeset(params)
 
       assert %Ecto.Changeset{
-        action: nil,
-        changes: %{
-          description: "Winning matches and loosing friends",
-          name: "Fractius aggro"
-        },
-        errors: [format: {"can't be blank", [validation: :required]}],
-        data: %Deck{},
-        valid?: false
-      } = result
+               action: nil,
+               changes: %{
+                 description: "Winning matches and loosing friends",
+                 name: "Fractius aggro"
+               },
+               errors: [format: {"can't be blank", [validation: :required]}],
+               data: %Deck{},
+               valid?: false
+             } = result
     end
 
     test "validates duplicated name and format" do
@@ -72,12 +72,12 @@ defmodule MagicDecks.DeckTest do
       result = Deck.changeset(deck, %{name: "Goblins aggro", format: :modern})
 
       assert %Ecto.Changeset{
-        action: nil,
-        changes: %{format: :modern, name: "Goblins aggro"},
-        errors: [],
-        data: %Deck{},
-        valid?: true
-      } = result
+               action: nil,
+               changes: %{format: :modern, name: "Goblins aggro"},
+               errors: [],
+               data: %Deck{},
+               valid?: true
+             } = result
     end
 
     test "returns an invalid changeset, when params has errors" do
