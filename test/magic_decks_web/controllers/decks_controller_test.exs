@@ -2,6 +2,61 @@ defmodule MagicDecksWeb.DecksControllerTest do
   use MagicDecksWeb.ConnCase
   alias MagicDecks.Deck
 
+  describe "#index" do
+    test "returns a list of all decks, when don't receive any filter param", %{conn: conn} do
+      {:ok, _} =
+        %{
+          "name" => "Fractius aggro",
+          "format" => "standard",
+          "description" => "Deck forfun"
+        }
+        |> MagicDecks.create_deck()
+
+      {:ok, _} =
+        %{
+          "name" => "Goblins aggro",
+          "format" => "standard",
+          "description" => "Deck tornament"
+        }
+        |> MagicDecks.create_deck()
+
+      response =
+        conn
+        |> get(Routes.decks_path(conn, :index))
+        |> json_response(:ok)
+
+      assert [
+               %{"name" => "Fractius aggro"},
+               %{"name" => "Goblins aggro"}
+             ] = response
+    end
+
+    test "filters decks by format, when receive format path param", %{conn: conn} do
+      {:ok, _} =
+        %{
+          "name" => "Fractius aggro",
+          "format" => :standard,
+          "description" => "Deck forfun"
+        }
+        |> MagicDecks.create_deck()
+
+      {:ok, _} =
+        %{
+          "name" => "Goblins aggro",
+          "format" => :commander,
+          "description" => "Deck tornament"
+        }
+        |> MagicDecks.create_deck()
+
+      response =
+        conn
+        |> get(Routes.decks_path(conn, :index, %{"format" => "standard"}))
+        |> json_response(:ok)
+
+      assert [%{"name" => "Fractius aggro", "format" => "standard"}] = response
+    end
+  end
+
   describe "#create" do
     test "returns created deck, when params are valid", %{conn: conn} do
       params = %{

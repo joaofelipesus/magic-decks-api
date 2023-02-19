@@ -3,16 +3,27 @@ defmodule MagicDecksWeb.DecksController do
 
   action_fallback MagicDecksWeb.FallbackController
 
-  def create(conn, %{"name" => name, "format" => format, "description" => description}) do
-    %{name: name, format: format, description: description}
-    |> MagicDecks.create_deck()
-    |> handle_response(conn, "show.json", :created)
+  def index(conn, params) do
+    decks =
+      params
+      |> index_path_params()
+      |> MagicDecks.list_deck()
+
+    conn
+    |> put_status(:ok)
+    |> render("index.json", %{decks: decks})
   end
 
   def show(conn, %{"id" => id}) do
     id
     |> MagicDecks.find_deck()
     |> handle_response(conn, "show.json", :ok)
+  end
+
+  def create(conn, %{"name" => name, "format" => format, "description" => description}) do
+    %{name: name, format: format, description: description}
+    |> MagicDecks.create_deck()
+    |> handle_response(conn, "show.json", :created)
   end
 
   def update(conn, %{"id" => id, "name" => name, "format" => format, "description" => description}) do
@@ -42,4 +53,8 @@ defmodule MagicDecksWeb.DecksController do
     |> put_status(:no_content)
     |> text("")
   end
+
+  defp index_path_params(%{"format" => format}), do: %{format: format}
+
+  defp index_path_params(%{}), do: %{}
 end
