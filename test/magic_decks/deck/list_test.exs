@@ -1,13 +1,13 @@
 defmodule MagicDecks.Deck.ListTest do
   use MagicDecks.DataCase
 
-  describe "call/0" do
+  describe "call(%{})" do
     test "returns all decks sorted by name" do
       {:ok, deck1} = MagicDecks.create_deck(%{name: "A", format: :commander})
       {:ok, deck2} = MagicDecks.create_deck(%{name: "B", format: :commander})
       {:ok, deck3} = MagicDecks.create_deck(%{name: "C", format: :commander})
 
-      assert MagicDecks.Deck.List.call() == [
+      assert MagicDecks.Deck.List.call(%{}) == [
                deck1,
                deck2,
                deck3

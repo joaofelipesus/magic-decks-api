@@ -3,18 +3,18 @@ defmodule MagicDecks.Deck.List do
   alias MagicDecks.Deck
   import Ecto.Query, only: [from: 2]
 
-  def call do
+  def call(%{format: format}) do
     query =
       from d in Deck,
+        where: d.format == ^format,
         order_by: [asc: d.name]
 
     Repo.all(query)
   end
 
-  def call(%{format: format}) do
+  def call(_params) do
     query =
       from d in Deck,
-        where: d.format == ^format,
         order_by: [asc: d.name]
 
     Repo.all(query)

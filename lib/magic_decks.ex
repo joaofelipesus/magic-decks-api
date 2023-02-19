@@ -3,4 +3,5 @@ defmodule MagicDecks do
   defdelegate find_deck(params), to: MagicDecks.Deck.Find, as: :call
   defdelegate update_deck(params), to: MagicDecks.Deck.Update, as: :call
   defdelegate delete_deck(params), to: MagicDecks.Deck.Delete, as: :call
+  defdelegate list_deck(params), to: MagicDecks.Deck.List, as: :call
 end
