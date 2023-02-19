@@ -1,6 +1,5 @@
 defmodule MagicDecks.Deck.List do
-  alias MagicDecks.Repo
-  alias MagicDecks.Deck
+  alias MagicDecks.{Deck, Repo}
   import Ecto.Query, only: [from: 2]
 
   def call(%{format: format}) do
