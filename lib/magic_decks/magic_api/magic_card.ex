@@ -21,7 +21,7 @@ defmodule MagicDecks.MagicApi.MagicCard do
       toughness: params["toughness"],
       colors: params["colors"],
       mana_cost: params["manaCost"],
-      rarity: params["rarity"],
+      rarity: parse_rarity(params["rarity"]),
       set: params["setName"],
       set_number: params["number"],
       image_url: params["imageUrl"],
@@ -36,4 +36,10 @@ defmodule MagicDecks.MagicApi.MagicCard do
 
     brazilian_card["name"]
   end
+
+  defp parse_rarity("Common"), do: :common
+  defp parse_rarity("Incommon"), do: :incommon
+  defp parse_rarity("Rare"), do: :rare
+  defp parse_rarity("Mythic"), do: :mythic
+  defp parse_rarity("Special"), do: :mythic
 end

@@ -133,7 +133,7 @@ defmodule MagicDecks.MagicApi.MagicCardTest do
                name_en: "Akroma, Angel of Wrath",
                name_pt: "Akroma, Anjo da Ira",
                power: "6",
-               rarity: "Mythic",
+               rarity: :mythic,
                set: "Commander 2020",
                set_number: "73",
                toughness: "6",
