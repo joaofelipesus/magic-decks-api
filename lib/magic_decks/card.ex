@@ -32,7 +32,7 @@ defmodule MagicDecks.Card do
     field :name_pt, :string
     field :set, :string
     field :set_number, :integer
-    field :rarity, Ecto.Enum, values: [:common, :incommon, :rare, :mithic]
+    field :rarity, Ecto.Enum, values: [:common, :incommon, :rare, :mythic]
     field :mana_cost, :string
     field :types, {:array, :string}
     field :power, :integer
