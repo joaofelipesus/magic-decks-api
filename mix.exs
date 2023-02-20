@@ -51,7 +51,8 @@ defmodule MagicDecks.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:excoveralls, "~> 0.10", only: :test},
-      {:tesla, "~> 1.4"}
+      {:tesla, "~> 1.4"},
+      {:cors_plug, "~> 3.0"}
     ]
   end
 
