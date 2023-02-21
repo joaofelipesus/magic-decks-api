@@ -4,7 +4,6 @@ defmodule MagicDecks.Card.Search do
   import Ecto.Query, only: [from: 2]
 
   def call(name, lang: :en, method: :db) do
-
     from(card in Card,
       where: ilike(card.name_en, ^"%#{name}%")
     )
