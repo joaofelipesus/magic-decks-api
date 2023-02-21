@@ -4,4 +4,6 @@ defmodule MagicDecks do
   defdelegate update_deck(params), to: MagicDecks.Deck.Update, as: :call
   defdelegate delete_deck(params), to: MagicDecks.Deck.Delete, as: :call
   defdelegate list_deck(params), to: MagicDecks.Deck.List, as: :call
+
+  defdelegate create_card(params), to: MagicDecks.Card.Create, as: :call
 end
