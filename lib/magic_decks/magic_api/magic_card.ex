@@ -1,5 +1,6 @@
 defmodule MagicDecks.MagicApi.MagicCard do
   defstruct [
+    :id,
     :name_en,
     :types,
     :power,
@@ -15,6 +16,7 @@ defmodule MagicDecks.MagicApi.MagicCard do
 
   def build(params) do
     %__MODULE__{
+      id: nil,
       name_en: params["name"],
       types: params["types"],
       power: params["power"],
@@ -38,7 +40,7 @@ defmodule MagicDecks.MagicApi.MagicCard do
   end
 
   defp parse_rarity("Common"), do: :common
-  defp parse_rarity("Incommon"), do: :incommon
+  defp parse_rarity("Uncommon"), do: :uncommon
   defp parse_rarity("Rare"), do: :rare
   defp parse_rarity("Mythic"), do: :mythic
   defp parse_rarity("Special"), do: :mythic
