@@ -47,4 +47,64 @@ defmodule MagicDecksWeb.CardsControllerTest do
              ] = response
     end
   end
+
+  describe "create/2" do
+    test "returns created card, when params are valid", %{conn: conn} do
+      params = %{
+        name_pt: "Akroma, Anjo da Ira",
+        name_en: "Akroma, Angel of Wrath",
+        types: ["creature"],
+        set: "legions",
+        set_number: 6,
+        mana_cost: "6{W}{W}{W}",
+        rarity: :rare,
+        power: 6,
+        toughness: 6,
+        image_url: "http://example.com/image.jpg",
+        colors: ["white"]
+      }
+
+      response =
+        conn
+        |> post(Routes.cards_path(conn, :create), params)
+        |> json_response(:created)
+
+        assert %{
+          "id" => _id,
+          "name_en" => "Akroma, Angel of Wrath",
+          "types" => ["creature"],
+          "power" => 6,
+          "toughness" => 6,
+          "colors" => ["white"],
+          "mana_cost" => "6{W}{W}{W}",
+          "rarity" => "rare",
+          "set" => "legions",
+          "set_number" => 6,
+          "image_url" => "http://example.com/image.jpg",
+          "name_pt" => "Akroma, Anjo da Ira"
+        } = response
+    end
+
+    test "returns error messages, when params has errors", %{conn: conn} do
+      params = %{
+        name_pt: "Akroma, Anjo da Ira",
+        types: ["creature"],
+        set: "legions",
+        set_number: 6,
+        mana_cost: "6{W}{W}{W}",
+        rarity: :rare,
+        power: 6,
+        toughness: 6,
+        image_url: "http://example.com/image.jpg",
+        colors: ["white"]
+      }
+
+      response =
+        conn
+        |> post(Routes.cards_path(conn, :create), params)
+        |> json_response(:bad_request)
+
+      assert %{"errors" => %{"name_en" => ["can't be blank"]}} == response
+    end
+  end
 end
