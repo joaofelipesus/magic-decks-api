@@ -139,7 +139,7 @@ defmodule MagicDecks.MagicApi.ClientTest do
         %Tesla.Env{status: 200, body: response_body()}
       end)
 
-      result = Client.find_by_name("Akroma, Anjo da Ira", lang: :pt)
+      {:ok, result} = Client.find_by_name("Akroma, Anjo da Ira", lang: :pt)
 
       assert [
                %MagicDecks.MagicApi.MagicCard{
@@ -167,7 +167,7 @@ defmodule MagicDecks.MagicApi.ClientTest do
         %Tesla.Env{status: 200, body: response_body()}
       end)
 
-      result = Client.find_by_name("Akroma, Angel of Wrath", lang: :en)
+      {:ok, result} = Client.find_by_name("Akroma, Angel of Wrath", lang: :en)
 
       assert [
                %MagicDecks.MagicApi.MagicCard{

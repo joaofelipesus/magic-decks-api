@@ -16,8 +16,10 @@ defmodule MagicDecks.MagicApi.Client do
   defp handle_response({:error, _response} = error), do: error
 
   defp handle_response({:ok, response}) do
-    response.body["cards"]
+    cards = response.body["cards"]
     |> Enum.map(fn card_params -> MagicDecks.MagicApi.MagicCard.build(card_params) end)
+
+    {:ok, cards}
   end
 
   defp name_param(name), do: URI.encode(name)
