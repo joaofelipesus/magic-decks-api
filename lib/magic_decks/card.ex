@@ -14,7 +14,8 @@ defmodule MagicDecks.Card do
     :rarity,
     :power,
     :toughness,
-    :colors
+    :colors,
+    :image_url
   ]
 
   @required [
