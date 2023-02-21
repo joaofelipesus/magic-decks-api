@@ -6,4 +6,5 @@ defmodule MagicDecks do
   defdelegate list_deck(params), to: MagicDecks.Deck.List, as: :call
 
   defdelegate create_card(params), to: MagicDecks.Card.Create, as: :call
+  defdelegate list_card(), to: MagicDecks.Card.List, as: :call
 end

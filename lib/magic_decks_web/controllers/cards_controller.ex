@@ -4,16 +4,17 @@ defmodule MagicDecksWeb.CardsController do
   action_fallback MagicDecksWeb.FallbackController
 
   def search(conn, %{"name" => name, "lang" => lang, "method" => method}) do
-    {:ok, cards} =
-      MagicDecks.Card.Search.call(
-        name,
-        lang: String.to_atom(lang),
-        method: String.to_atom(method)
-      )
+    MagicDecks.Card.Search.call(
+      name,
+      lang: String.to_atom(lang),
+      method: String.to_atom(method)
+    )
+    |> handle_response(conn, "index.json", :ok)
+  end
 
-    conn
-    |> put_status(:ok)
-    |> render("index.json", %{cards: cards})
+  def index(conn, _params) do
+    MagicDecks.list_card()
+    |> handle_response(conn, "index.json", :ok)
   end
 
   def create(conn, params) do
@@ -36,13 +37,15 @@ defmodule MagicDecksWeb.CardsController do
 
   defp handle_response({:error, _changeset} = error, _conn, _template, _status), do: error
 
+  defp handle_response({:ok, cards}, conn, "index.json", status) do
+    conn
+    |> put_status(status)
+    |> render("index.json", %{cards: cards})
+  end
+
   defp handle_response({:ok, card}, conn, template, status) do
     conn
     |> put_status(status)
     |> render(template, %{card: card})
   end
-
-  # TODO: add create route
-  # TODO: add index route
-  # TODO: add delete route
 end

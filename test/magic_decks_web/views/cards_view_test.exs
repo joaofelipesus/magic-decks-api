@@ -56,19 +56,19 @@ defmodule MagicDecksWeb.CardsViewTest do
       result = render(MagicDecksWeb.CardsView, "show.json", %{card: card})
 
       assert %{
-        id: _id,
-        name_en: "Akroma, Angel of Wrath",
-        types: ["creature"],
-        power: 6,
-        toughness: 6,
-        colors: ["white"],
-        mana_cost: "6{W}{W}{W}",
-        rarity: :rare,
-        set: "legions",
-        set_number: 6,
-        image_url: "http://example.com/image.jpg",
-        name_pt: "Akroma, Anjo da Ira"
-      } = result
+               id: _id,
+               name_en: "Akroma, Angel of Wrath",
+               types: ["creature"],
+               power: 6,
+               toughness: 6,
+               colors: ["white"],
+               mana_cost: "6{W}{W}{W}",
+               rarity: :rare,
+               set: "legions",
+               set_number: 6,
+               image_url: "http://example.com/image.jpg",
+               name_pt: "Akroma, Anjo da Ira"
+             } = result
     end
   end
 end
