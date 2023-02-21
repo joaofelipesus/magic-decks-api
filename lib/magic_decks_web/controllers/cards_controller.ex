@@ -14,4 +14,9 @@ defmodule MagicDecksWeb.CardsController do
     |> put_status(:ok)
     |> render("index.json", %{cards: cards})
   end
+
+  # TODO: add methods coverage
+  # TODO: add create route
+  # TODO: add index route
+  # TODO: add delete route
 end
