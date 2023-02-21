@@ -9,6 +9,8 @@ defmodule MagicDecksWeb.Router do
     pipe_through :api
 
     resources "/decks", DecksController
+    get "/cards/search", CardsController, :search
+    resources "/cards", CardsController
   end
 
   # Enables LiveDashboard only for development
