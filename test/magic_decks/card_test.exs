@@ -13,7 +13,8 @@ defmodule MagicDecks.CardTest do
         mana_cost: "6{W}{W}{W}",
         rarity: :rare,
         power: 6,
-        toughness: 6
+        toughness: 6,
+        image_url: "http://example.com/image.jpg"
       }
 
       result = Card.changeset(params)
@@ -28,7 +29,8 @@ defmodule MagicDecks.CardTest do
                  set: "legions",
                  set_number: 6,
                  toughness: 6,
-                 types: ["creature"]
+                 types: ["creature"],
+                 image_url: "http://example.com/image.jpg"
                },
                errors: [],
                data: %Card{},
