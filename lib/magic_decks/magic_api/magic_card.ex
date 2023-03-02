@@ -39,6 +39,8 @@ defmodule MagicDecks.MagicApi.MagicCard do
     brazilian_card["name"]
   end
 
+  defp name_pt(%{}), do: nil
+
   defp parse_rarity("Common"), do: :common
   defp parse_rarity("Uncommon"), do: :uncommon
   defp parse_rarity("Rare"), do: :rare
