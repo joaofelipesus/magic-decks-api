@@ -1,24 +1,13 @@
 defmodule MagicDecks.CardTest do
   use MagicDecks.DataCase
   alias MagicDecks.Card
+  import MagicDecks.Factory
 
   describe "changeset/1" do
     test "returns an valid changeset, when params are valid" do
-      params = %{
-        name_pt: "Akroma, Anjo da Ira",
-        name_en: "Akroma, Angel of Wrath",
-        types: ["creature"],
-        set: "legions",
-        set_number: 6,
-        mana_cost: "6{W}{W}{W}",
-        rarity: :rare,
-        power: 6,
-        toughness: 6,
-        image_url: "http://example.com/image.jpg",
-        external_id: "e4c94bde-8bd2-5b5d-bd7b-aa7c4b0b2fcd"
-      }
-
-      result = Card.changeset(params)
+      result =
+        build(:card_params)
+        |> Card.changeset()
 
       assert %Ecto.Changeset{
                changes: %{
@@ -40,19 +29,9 @@ defmodule MagicDecks.CardTest do
     end
 
     test "returns an invalid changeset, when params has errors" do
-      params = %{
-        name_en: "Akroma, Angel of Wrath",
-        types: ["creature"],
-        set: "legions",
-        set_number: 6,
-        mana_cost: "6{W}{W}{W}",
-        rarity: :rare,
-        power: 6,
-        toughness: 6,
-        external_id: "e4c94bde-8bd2-5b5d-bd7b-aa7c4b0b2fcd"
-      }
-
-      result = Card.changeset(params)
+      result =
+        build(:card_params, %{name_pt: nil})
+        |> Card.changeset()
 
       assert %Ecto.Changeset{
                valid?: false,
@@ -64,21 +43,8 @@ defmodule MagicDecks.CardTest do
 
   describe "changeset/2" do
     test "returns an valid changeset, when params are valid" do
-      params = %{
-        name_pt: "Akroma, Anjo da Ira",
-        name_en: "Akroma, Angel of Wrath",
-        types: ["creature"],
-        set: "legions",
-        set_number: 6,
-        mana_cost: "6{W}{W}{W}",
-        rarity: :rare,
-        power: 5,
-        toughness: 6,
-        external_id:  "e4c94bde-8bd2-5b5d-bd7b-aa7c4b0b2fcd"
-      }
-
       {:ok, card} =
-        params
+        build(:card_params, %{power: 5})
         |> Card.changeset()
         |> MagicDecks.Repo.insert()
 
@@ -96,21 +62,8 @@ defmodule MagicDecks.CardTest do
     end
 
     test "returns an invalid changeset, when params has erros" do
-      params = %{
-        name_pt: "Akroma, Anjo da Ira",
-        name_en: "Akroma, Angel of Wrath",
-        types: ["creature"],
-        set: "legions",
-        set_number: 6,
-        mana_cost: "6{W}{W}{W}",
-        rarity: :rare,
-        power: 5,
-        toughness: 6,
-        external_id:  "e4c94bde-8bd2-5b5d-bd7b-aa7c4b0b2fcd"
-      }
-
       {:ok, card} =
-        params
+        build(:card_params)
         |> Card.changeset()
         |> MagicDecks.Repo.insert()
 
@@ -127,23 +80,13 @@ defmodule MagicDecks.CardTest do
   end
 
   test "validates external_id uniqueness" do
-    params = %{
-      name_pt: "Akroma, Anjo da Ira",
-      name_en: "Akroma, Angel of Wrath",
-      types: ["creature"],
-      set: "legions",
-      set_number: 6,
-      mana_cost: "6{W}{W}{W}",
-      rarity: :rare,
-      power: 6,
-      toughness: 6,
-      image_url: "http://example.com/image.jpg",
-      external_id: "e4c94bde-8bd2-5b5d-bd7b-aa7c4b0b2fcd"
-    }
+    uuid = "2882e3b0-8e9b-426d-8c08-028e28ed284a"
 
-    {:ok, _card} = MagicDecks.create_card(params)
+    insert(:card, %{ external_id: uuid})
 
-    {:error, result} = MagicDecks.create_card(params)
+    card_params = build(:card_params, %{external_id: uuid})
+
+    {:error, result} = MagicDecks.create_card(card_params)
 
     assert %Ecto.Changeset{
       errors: [
