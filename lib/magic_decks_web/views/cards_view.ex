@@ -16,7 +16,8 @@ defmodule MagicDecksWeb.CardsView do
         set: card.set,
         set_number: card.set_number,
         image_url: card.image_url,
-        name_pt: card.name_pt
+        name_pt: card.name_pt,
+        external_id: card.external_id
       }
     end)
   end
@@ -34,7 +35,8 @@ defmodule MagicDecksWeb.CardsView do
       set: card.set,
       set_number: card.set_number,
       image_url: card.image_url,
-      name_pt: card.name_pt
+      name_pt: card.name_pt,
+      external_id: card.external_id
     }
   end
 end

@@ -15,7 +15,8 @@ defmodule MagicDecksWeb.CardsViewTest do
       power: 6,
       toughness: 6,
       image_url: "http://example.com/image.jpg",
-      colors: ["white"]
+      colors: ["white"],
+      external_id: "e4c94bde-8bd2-5b5d-bd7b-aa7c4b0b2fcd"
     }
   end
 
@@ -43,7 +44,8 @@ defmodule MagicDecksWeb.CardsViewTest do
                  set: "legions",
                  set_number: 6,
                  image_url: "http://example.com/image.jpg",
-                 name_pt: "Akroma, Anjo da Ira"
+                 name_pt: "Akroma, Anjo da Ira",
+                 external_id: "e4c94bde-8bd2-5b5d-bd7b-aa7c4b0b2fcd"
                }
              ] = result
     end
@@ -67,7 +69,8 @@ defmodule MagicDecksWeb.CardsViewTest do
                set: "legions",
                set_number: 6,
                image_url: "http://example.com/image.jpg",
-               name_pt: "Akroma, Anjo da Ira"
+               name_pt: "Akroma, Anjo da Ira",
+               external_id: "e4c94bde-8bd2-5b5d-bd7b-aa7c4b0b2fcd"
              } = result
     end
   end
