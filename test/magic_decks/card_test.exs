@@ -14,7 +14,8 @@ defmodule MagicDecks.CardTest do
         rarity: :rare,
         power: 6,
         toughness: 6,
-        image_url: "http://example.com/image.jpg"
+        image_url: "http://example.com/image.jpg",
+        external_id: "e4c94bde-8bd2-5b5d-bd7b-aa7c4b0b2fcd"
       }
 
       result = Card.changeset(params)
@@ -30,7 +31,7 @@ defmodule MagicDecks.CardTest do
                  set_number: 6,
                  toughness: 6,
                  types: ["creature"],
-                 image_url: "http://example.com/image.jpg"
+                 image_url: "http://example.com/image.jpg",
                },
                errors: [],
                data: %Card{},
@@ -47,7 +48,8 @@ defmodule MagicDecks.CardTest do
         mana_cost: "6{W}{W}{W}",
         rarity: :rare,
         power: 6,
-        toughness: 6
+        toughness: 6,
+        external_id: "e4c94bde-8bd2-5b5d-bd7b-aa7c4b0b2fcd"
       }
 
       result = Card.changeset(params)
@@ -71,7 +73,8 @@ defmodule MagicDecks.CardTest do
         mana_cost: "6{W}{W}{W}",
         rarity: :rare,
         power: 5,
-        toughness: 6
+        toughness: 6,
+        external_id:  "e4c94bde-8bd2-5b5d-bd7b-aa7c4b0b2fcd"
       }
 
       {:ok, card} =
@@ -102,7 +105,8 @@ defmodule MagicDecks.CardTest do
         mana_cost: "6{W}{W}{W}",
         rarity: :rare,
         power: 5,
-        toughness: 6
+        toughness: 6,
+        external_id:  "e4c94bde-8bd2-5b5d-bd7b-aa7c4b0b2fcd"
       }
 
       {:ok, card} =
@@ -120,5 +124,33 @@ defmodule MagicDecks.CardTest do
                errors: [name_pt: {"can't be blank", [validation: :required]}]
              } = result
     end
+  end
+
+  test "validates external_id uniqueness" do
+    params = %{
+      name_pt: "Akroma, Anjo da Ira",
+      name_en: "Akroma, Angel of Wrath",
+      types: ["creature"],
+      set: "legions",
+      set_number: 6,
+      mana_cost: "6{W}{W}{W}",
+      rarity: :rare,
+      power: 6,
+      toughness: 6,
+      image_url: "http://example.com/image.jpg",
+      external_id: "e4c94bde-8bd2-5b5d-bd7b-aa7c4b0b2fcd"
+    }
+
+    {:ok, _card} = MagicDecks.create_card(params)
+
+    {:error, result} = MagicDecks.create_card(params)
+
+    assert %Ecto.Changeset{
+      errors: [
+        external_id: {"has already been taken",
+         [constraint: :unique, constraint_name: "cards_external_id_index"]}
+      ],
+      valid?: false
+    } = result
   end
 end

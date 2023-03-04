@@ -15,7 +15,8 @@ defmodule MagicDecks.Card do
     :power,
     :toughness,
     :colors,
-    :image_url
+    :image_url,
+    :external_id
   ]
 
   @required [
@@ -25,7 +26,8 @@ defmodule MagicDecks.Card do
     :set_number,
     :mana_cost,
     :types,
-    :rarity
+    :rarity,
+    :external_id
   ]
 
   schema "cards" do
@@ -40,6 +42,7 @@ defmodule MagicDecks.Card do
     field :toughness, :integer
     field :colors, {:array, :string}
     field :image_url, :string
+    field :external_id, Ecto.UUID
     timestamps()
   end
 
@@ -51,5 +54,6 @@ defmodule MagicDecks.Card do
     card
     |> cast(params, @attributes)
     |> validate_required(@required)
+    |> unique_constraint(:external_id, name: :cards_external_id_index)
   end
 end
