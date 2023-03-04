@@ -14,7 +14,8 @@ defmodule MagicDecks.Card.ListTest do
       set: "legions",
       set_number: 6,
       toughness: 6,
-      types: ["creature"]
+      types: ["creature"],
+      external_id: "e4c94bde-8bd2-5b5d-bd7b-aa7c4b0b2fcd"
     }
     |> MagicDecks.create_card()
   end
@@ -30,7 +31,8 @@ defmodule MagicDecks.Card.ListTest do
       set: "legions",
       set_number: 6,
       toughness: 6,
-      types: ["creature"]
+      types: ["creature"],
+      external_id: "cabe754b-ddb0-4f54-a182-2db436c286de"
     }
     |> MagicDecks.create_card()
   end
