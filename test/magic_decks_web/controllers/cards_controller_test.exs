@@ -15,7 +15,8 @@ defmodule MagicDecksWeb.CardsControllerTest do
       power: 6,
       toughness: 6,
       image_url: "http://example.com/image.jpg",
-      colors: ["white"]
+      colors: ["white"],
+      external_id: "15c06ada-0869-4b15-94fc-22858c6bd130"
     }
     |> Card.changeset()
     |> Repo.insert()
@@ -64,7 +65,8 @@ defmodule MagicDecksWeb.CardsControllerTest do
         power: 6,
         toughness: 6,
         image_url: "http://example.com/image.jpg",
-        colors: ["white"]
+        colors: ["white"],
+        external_id: "15c06ada-0869-4b15-94fc-22858c6bd130"
       }
 
       response =
@@ -99,7 +101,8 @@ defmodule MagicDecksWeb.CardsControllerTest do
         power: 6,
         toughness: 6,
         image_url: "http://example.com/image.jpg",
-        colors: ["white"]
+        colors: ["white"],
+        external_id: "15c06ada-0869-4b15-94fc-22858c6bd130"
       }
 
       response =

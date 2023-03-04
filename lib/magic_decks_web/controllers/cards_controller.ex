@@ -29,7 +29,8 @@ defmodule MagicDecksWeb.CardsController do
       set_number: params["set_number"],
       toughness: params["toughness"],
       types: params["types"],
-      colors: params["colors"]
+      colors: params["colors"],
+      external_id: params["external_id"]
     }
     |> MagicDecks.create_card()
     |> handle_response(conn, "show.json", :created)
