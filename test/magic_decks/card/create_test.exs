@@ -16,7 +16,8 @@ defmodule MagicDecks.Card.CreateTest do
           set: "legions",
           set_number: 6,
           toughness: 6,
-          types: ["creature"]
+          types: ["creature"],
+          external_id: "15c06ada-0869-4b15-94fc-22858c6bd130"
         }
         |> Create.call()
 
@@ -31,7 +32,8 @@ defmodule MagicDecks.Card.CreateTest do
                set: "legions",
                set_number: 6,
                toughness: 6,
-               types: ["creature"]
+               types: ["creature"],
+               external_id: "15c06ada-0869-4b15-94fc-22858c6bd130"
              } = card
     end
 
@@ -47,7 +49,8 @@ defmodule MagicDecks.Card.CreateTest do
                  set_number: {"can't be blank", [validation: :required]},
                  mana_cost: {"can't be blank", [validation: :required]},
                  types: {"can't be blank", [validation: :required]},
-                 rarity: {"can't be blank", [validation: :required]}
+                 rarity: {"can't be blank", [validation: :required]},
+                 external_id: {"can't be blank", [validation: :required]}
                ],
                data: %MagicDecks.Card{},
                valid?: false
