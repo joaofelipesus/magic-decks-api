@@ -137,7 +137,8 @@ defmodule MagicDecks.MagicApi.MagicCardTest do
                set: "Commander 2020",
                set_number: "73",
                toughness: "6",
-               types: ["Creature"]
+               types: ["Creature"],
+               external_id: "e4c94bde-8bd2-5b5d-bd7b-aa7c4b0b2fcd"
              } == result
     end
   end

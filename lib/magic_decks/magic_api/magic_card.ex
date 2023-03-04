@@ -11,7 +11,8 @@ defmodule MagicDecks.MagicApi.MagicCard do
     :set,
     :set_number,
     :image_url,
-    :name_pt
+    :name_pt,
+    :external_id
   ]
 
   def build(params) do
@@ -27,7 +28,8 @@ defmodule MagicDecks.MagicApi.MagicCard do
       set: params["setName"],
       set_number: params["number"],
       image_url: params["imageUrl"],
-      name_pt: name_pt(params)
+      name_pt: name_pt(params),
+      external_id: params["id"]
     }
   end
 
