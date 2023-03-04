@@ -20,7 +20,8 @@ defmodule MagicDecks.Card.SearchTest do
         set: "legions",
         set_number: 6,
         toughness: 6,
-        types: ["creature"]
+        types: ["creature"],
+        external_id: "15c06ada-0869-4b15-94fc-22858c6bd130"
       }
       |> MagicDecks.Card.changeset()
       |> MagicDecks.Repo.insert()
@@ -38,7 +39,8 @@ defmodule MagicDecks.Card.SearchTest do
                  set: "legions",
                  set_number: 6,
                  toughness: 6,
-                 types: ["creature"]
+                 types: ["creature"],
+                 external_id: "15c06ada-0869-4b15-94fc-22858c6bd130"
                }
              ] = result
     end
@@ -54,7 +56,8 @@ defmodule MagicDecks.Card.SearchTest do
         set: "legions",
         set_number: 6,
         toughness: 6,
-        types: ["creature"]
+        types: ["creature"],
+        external_id: "15c06ada-0869-4b15-94fc-22858c6bd130"
       }
       |> MagicDecks.Card.changeset()
       |> MagicDecks.Repo.insert()
@@ -72,7 +75,8 @@ defmodule MagicDecks.Card.SearchTest do
                  set: "legions",
                  set_number: 6,
                  toughness: 6,
-                 types: ["creature"]
+                 types: ["creature"],
+                 external_id: "15c06ada-0869-4b15-94fc-22858c6bd130"
                }
              ] = result
     end
