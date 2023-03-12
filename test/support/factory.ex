@@ -34,4 +34,11 @@ defmodule MagicDecks.Factory do
       colors: ["white"]
     }
   end
+
+  def deck_factory do
+    %MagicDecks.Deck{
+      name: "Goblins",
+      description: "Goblin tokens deck"
+    }
+  end
 end
