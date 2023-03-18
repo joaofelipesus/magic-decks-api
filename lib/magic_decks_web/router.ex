@@ -11,6 +11,7 @@ defmodule MagicDecksWeb.Router do
     resources "/decks", DecksController
     get "/cards/search", CardsController, :search
     resources "/cards", CardsController
+    resources "/deck_cards", DeckCardsController, only: [:create]
   end
 
   # Enables LiveDashboard only for development
