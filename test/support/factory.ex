@@ -41,4 +41,12 @@ defmodule MagicDecks.Factory do
       description: "Goblin tokens deck"
     }
   end
+
+  def deck_card_factory do
+    %MagicDecks.DeckCard{
+      deck: build(:deck),
+      card: build(:card),
+      quantity: 1
+    }
+  end
 end
