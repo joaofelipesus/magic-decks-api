@@ -141,5 +141,65 @@ defmodule MagicDecks.MagicApi.MagicCardTest do
                external_id: "e4c94bde-8bd2-5b5d-bd7b-aa7c4b0b2fcd"
              } == result
     end
+
+    test "returns name_pt nil, when value wasn't returned by magic API" do
+      params = %{
+        "rarity" => "Mythic"
+      }
+
+      result = MagicCard.build(params)
+
+      assert nil == result.name_pt
+    end
+
+    test "returns correct rarity when received Mythic" do
+      params = %{
+        "rarity" => "Mythic"
+      }
+
+      result = MagicCard.build(params)
+
+      assert :mythic == result.rarity
+    end
+
+    test "returns correct rarity when received Common" do
+      params = %{
+        "rarity" => "Common"
+      }
+
+      result = MagicCard.build(params)
+
+      assert :common == result.rarity
+    end
+
+    test "returns correct rarity when received Uncommon" do
+      params = %{
+        "rarity" => "Uncommon"
+      }
+
+      result = MagicCard.build(params)
+
+      assert :uncommon == result.rarity
+    end
+
+    test "returns correct rarity when received Rare" do
+      params = %{
+        "rarity" => "Rare"
+      }
+
+      result = MagicCard.build(params)
+
+      assert :rare == result.rarity
+    end
+
+    test "returns correct rarity when received Special" do
+      params = %{
+        "rarity" => "Special"
+      }
+
+      result = MagicCard.build(params)
+
+      assert :mythic == result.rarity
+    end
   end
 end
