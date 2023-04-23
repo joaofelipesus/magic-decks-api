@@ -19,6 +19,7 @@ defmodule MagicDecks.MagicApi.Client do
     cards =
       response.body["cards"]
       |> Enum.map(fn card_params -> MagicDecks.MagicApi.MagicCard.build(card_params) end)
+      |> Enum.filter(fn card -> card.image_url != nil end)
 
     {:ok, cards}
   end

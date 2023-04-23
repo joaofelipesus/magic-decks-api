@@ -125,6 +125,68 @@ defmodule MagicDecks.MagicApi.ClientTest do
           "toughness" => "6",
           "type" => "Legendary Creature — Angel",
           "types" => ["Creature"]
+        },
+        %{
+          "artist" => "Terese Nielsen",
+          "cmc" => 8.0,
+          "colorIdentity" => ["W"],
+          "colors" => ["W"],
+          "flavor" => "\"Wrath is no vice when inflicted upon the deserving.\"",
+          "foreignNames" => [
+
+            %{
+              "flavor" => "\"A ira não é pecado quando voltada contra os que a merecem.\"",
+              "imageUrl" =>
+                "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=484207&type=card",
+              "language" => "Portuguese (Brazil)",
+              "multiverseid" => 484_207,
+              "name" => "Akroma, Anjo da Ira",
+              "text" =>
+                "Voar, iniciativa, vigilância, atropelar, ímpeto, proteção contra o preto, proteção contra o vermelho",
+              "type" => "Criatura Lendária — Anjo"
+            },
+            %{
+              "flavor" => "Гнев — это не rpex, когда он обращен на тех, кто этого заслуживает.",
+              "imageUrl" =>
+                "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=484458&type=card",
+              "language" => "Russian",
+              "multiverseid" => 484_458,
+              "name" => "Акрома, Ангел Ярости",
+              "text" =>
+                "Полет, Первый удар, Бдительность, Пробивной удар, Ускорение, Защита от черного и от красного",
+              "type" => "Легендарное Существо — Ангел"
+            }
+          ],
+          "id" => "e4c94bde-8bd2-5b5d-bd7b-aa7c4b0b2fcd",
+          "imageUrl" => nil,
+          "layout" => "normal",
+          "legalities" => [
+            %{"format" => "Commander", "legality" => "Legal"},
+            %{"format" => "Duel", "legality" => "Legal"},
+            %{"format" => "Legacy", "legality" => "Legal"},
+            %{"format" => "Modern", "legality" => "Legal"},
+            %{"format" => "Premodern", "legality" => "Legal"},
+            %{"format" => "Vintage", "legality" => "Legal"}
+          ],
+          "manaCost" => "{5}{W}{W}{W}",
+          "multiverseid" => "482701",
+          "name" => "Akroma, Angel of Wrath",
+          "number" => "73",
+          "originalText" =>
+            "Flying, first strike, vigilance, trample, haste, protection from black and from red",
+          "originalType" => "Legendary Creature — Angel",
+          "power" => "6",
+          "printings" => ["A25", "C20", "DDC", "DVD", "LGN", "SLD", "TSB", "V15"],
+          "rarity" => "Mythic",
+          "set" => "C20",
+          "setName" => "Commander 2020",
+          "subtypes" => ["Angel"],
+          "supertypes" => ["Legendary"],
+          "text" =>
+            "Flying, first strike, vigilance, trample, haste, protection from black and from red",
+          "toughness" => "6",
+          "type" => "Legendary Creature — Angel",
+          "types" => ["Creature"]
         }
       ]
     }
@@ -187,6 +249,19 @@ defmodule MagicDecks.MagicApi.ClientTest do
                  external_id: "e4c94bde-8bd2-5b5d-bd7b-aa7c4b0b2fcd"
                }
              ] == result
+    end
+
+    test "returns only cards with image_url" do
+      mock(fn %{
+              method: :get,
+              url: @request_url
+            } ->
+      %Tesla.Env{status: 200, body: response_body()}
+      end)
+
+      {:ok, result} = Client.find_by_name("Akroma, Anjo da Ira", lang: :pt)
+
+      assert length(result) == 1
     end
 
     test "returns error message, when api returns error status" do
