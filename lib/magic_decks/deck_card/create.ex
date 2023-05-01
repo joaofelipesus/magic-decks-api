@@ -1,13 +1,16 @@
 defmodule MagicDecks.DeckCard.Create do
   alias MagicDecks.{DeckCard, Repo}
 
+  # TODO: check deck format and if it is valid, example commander can have only one copy of each card.
   def call(%{card: %{external_id: external_id}} = params) do
     case Repo.get_by(MagicDecks.Card, external_id: external_id) do
       nil ->
-        {:ok, card} = params[:card]
-        |> MagicDecks.create_card()
+        {:ok, card} =
+          params[:card]
+          |> MagicDecks.create_card()
 
         deck_card_upsert(nil, %{card_id: card.id, deck_id: params[:deck_id]})
+
       card ->
         Repo.get_by(DeckCard, deck_id: params[:deck_id], card_id: card.id)
         |> deck_card_upsert(%{card_id: card.id, deck_id: params[:deck_id]})

@@ -20,7 +20,7 @@ defmodule MagicDecks.CardTest do
                  set_number: 6,
                  toughness: 6,
                  types: ["creature"],
-                 image_url: "http://example.com/image.jpg",
+                 image_url: "http://example.com/image.jpg"
                },
                errors: [],
                data: %Card{},
@@ -82,18 +82,19 @@ defmodule MagicDecks.CardTest do
   test "validates external_id uniqueness" do
     uuid = "2882e3b0-8e9b-426d-8c08-028e28ed284a"
 
-    insert(:card, %{ external_id: uuid})
+    insert(:card, %{external_id: uuid})
 
     card_params = build(:card_params, %{external_id: uuid})
 
     {:error, result} = MagicDecks.create_card(card_params)
 
     assert %Ecto.Changeset{
-      errors: [
-        external_id: {"has already been taken",
-         [constraint: :unique, constraint_name: "cards_external_id_index"]}
-      ],
-      valid?: false
-    } = result
+             errors: [
+               external_id:
+                 {"has already been taken",
+                  [constraint: :unique, constraint_name: "cards_external_id_index"]}
+             ],
+             valid?: false
+           } = result
   end
 end

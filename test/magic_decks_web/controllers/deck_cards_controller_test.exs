@@ -65,10 +65,10 @@ defmodule MagicDecksWeb.DeckCardsControllerTest do
         |> json_response(:bad_request)
 
       assert %{
-        "errors" => %{
-          "deck_id" => ["can't be blank"]
-        }
-      } == response
+               "errors" => %{
+                 "deck_id" => ["can't be blank"]
+               }
+             } == response
     end
   end
 end

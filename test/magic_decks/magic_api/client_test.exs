@@ -133,7 +133,6 @@ defmodule MagicDecks.MagicApi.ClientTest do
           "colors" => ["W"],
           "flavor" => "\"Wrath is no vice when inflicted upon the deserving.\"",
           "foreignNames" => [
-
             %{
               "flavor" => "\"A ira não é pecado quando voltada contra os que a merecem.\"",
               "imageUrl" =>
@@ -253,10 +252,10 @@ defmodule MagicDecks.MagicApi.ClientTest do
 
     test "returns only cards with image_url" do
       mock(fn %{
-              method: :get,
-              url: @request_url
-            } ->
-      %Tesla.Env{status: 200, body: response_body()}
+                method: :get,
+                url: @request_url
+              } ->
+        %Tesla.Env{status: 200, body: response_body()}
       end)
 
       {:ok, result} = Client.find_by_name("Akroma, Anjo da Ira", lang: :pt)

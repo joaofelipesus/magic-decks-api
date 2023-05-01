@@ -1,15 +1,40 @@
 defmodule MagicDecksWeb.DecksViewTest do
   use MagicDecksWeb.ConnCase
 
+  import MagicDecks.Factory
   import Phoenix.View
 
   describe "show/2" do
+    test "returns a parsed deck" do
+      {:ok, %MagicDecks.Deck{id: deck_id}} =
+        %{name: "Fractius aggro", format: :standard, description: "Deck forfun"}
+        |> MagicDecks.create_deck()
+
+      card = insert(:card)
+
+      MagicDecks.create_deck_card(%{card: %{external_id: card.external_id}, deck_id: deck_id})
+
+      {:ok, deck} = MagicDecks.find_deck(deck_id)
+
+      result = render(MagicDecksWeb.DecksView, "show.json", %{deck: deck})
+
+      assert %{
+               description: "Deck forfun",
+               format: :standard,
+               id: _id,
+               inserted_at: _inserted_at,
+               name: "Fractius aggro"
+             } = result
+    end
+  end
+
+  describe "upsert/2" do
     test "returns a parsed deck" do
       {:ok, deck} =
         %{name: "Fractius aggro", format: :standard, description: "Deck forfun"}
         |> MagicDecks.create_deck()
 
-      result = render(MagicDecksWeb.DecksView, "show.json", %{deck: deck})
+      result = render(MagicDecksWeb.DecksView, "upsert.json", %{deck: deck})
 
       assert %{
                description: "Deck forfun",

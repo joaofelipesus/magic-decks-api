@@ -23,13 +23,13 @@ defmodule MagicDecksWeb.DecksController do
   def create(conn, %{"name" => name, "format" => format, "description" => description}) do
     %{name: name, format: format, description: description}
     |> MagicDecks.create_deck()
-    |> handle_response(conn, "show.json", :created)
+    |> handle_response(conn, "upsert.json", :created)
   end
 
   def update(conn, %{"id" => id, "name" => name, "format" => format, "description" => description}) do
     %{id: id, name: name, format: format, description: description}
     |> MagicDecks.update_deck()
-    |> handle_response(conn, "show.json", :ok)
+    |> handle_response(conn, "upsert.json", :ok)
   end
 
   def delete(conn, %{"id" => id}) do

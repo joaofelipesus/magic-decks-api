@@ -10,6 +10,7 @@ defmodule MagicDecks.Deck do
     field :name, :string
     field :description, :string
     field :format, Ecto.Enum, values: [:commander, :modern, :standard]
+    has_many(:deck_cards, MagicDecks.DeckCard)
     timestamps()
   end
 
