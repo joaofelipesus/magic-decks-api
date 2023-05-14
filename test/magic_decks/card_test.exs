@@ -30,12 +30,12 @@ defmodule MagicDecks.CardTest do
 
     test "returns an invalid changeset, when params has errors" do
       result =
-        build(:card_params, %{name_pt: nil})
+        build(:card_params, %{name_en: nil})
         |> Card.changeset()
 
       assert %Ecto.Changeset{
                valid?: false,
-               errors: [name_pt: {"can't be blank", [validation: :required]}],
+               errors: [name_en: {"can't be blank", [validation: :required]}],
                data: %Card{}
              } = result
     end
@@ -67,14 +67,14 @@ defmodule MagicDecks.CardTest do
         |> Card.changeset()
         |> MagicDecks.Repo.insert()
 
-      update_params = %{name_pt: nil}
+      update_params = %{name_en: nil}
 
       result = Card.changeset(card, update_params)
 
       assert %Ecto.Changeset{
                data: %Card{},
                valid?: false,
-               errors: [name_pt: {"can't be blank", [validation: :required]}]
+               errors: [name_en: {"can't be blank", [validation: :required]}]
              } = result
     end
   end

@@ -44,7 +44,6 @@ defmodule MagicDecks.Card.CreateTest do
                action: :insert,
                errors: [
                  name_en: {"can't be blank", [validation: :required]},
-                 name_pt: {"can't be blank", [validation: :required]},
                  set: {"can't be blank", [validation: :required]},
                  set_number: {"can't be blank", [validation: :required]},
                  mana_cost: {"can't be blank", [validation: :required]},

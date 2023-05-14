@@ -21,7 +21,6 @@ defmodule MagicDecks.Card do
 
   @required [
     :name_en,
-    :name_pt,
     :set,
     :set_number,
     :mana_cost,
